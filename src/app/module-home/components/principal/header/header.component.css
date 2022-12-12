@@ -1,0 +1,59 @@
+.carousel{
+    position: relative;
+    width: 100%;
+    font-size: 20px;
+    overflow: hidden;
+}
+.carousel__boton{
+    position: absolute;
+    top: 50%;
+    font-size: 5em;
+    color: rgba(255, 255, 255, 0.616);
+    background: transparent;
+    border: none;
+    outline: none;
+    transition: all .5s;
+    cursor: pointer;
+    z-index: 2;
+}
+.carousel__boton:hover{
+    color: #fff;
+}
+.carousel__conteiner{
+    width: 100%;
+    position: relative;
+    height: 100vh;
+}
+.carousel__boton--nex{
+    right: .5em;
+}
+.carousel__boton--back{
+    left: .5em;
+}
+.carousel__imagen{
+    object-fit: cover;
+    height: 100%;
+    transition: all 5s;
+}
+.carousel__item{
+    height: 100%;
+    overflow: hidden;
+    position: absolute;
+    width: 100%;
+    top: 0;
+    left: 0;
+}
+.carousel__item--irse{
+    animation: irse .9s;
+}
+@keyframes irse {
+    0%{transform: translateX(0%);}
+    100%{transform: translateX(100%);}
+}
+.carousel__item--quedarse{
+    animation: quedarse .9s;
+}
+@keyframes quedarse {
+    0%{transform: translateX(-100%);}
+    100%{transform: translateX(0%);}
+}

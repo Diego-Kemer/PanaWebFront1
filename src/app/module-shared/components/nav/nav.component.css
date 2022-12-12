@@ -1,0 +1,90 @@
+.menu{
+    width: 100%;
+    padding: 1.4rem;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    font-size: 20px;
+    background: rgba(0, 0, 0, 0.37);
+    position: absolute;
+    top: 0;
+    z-index: 2;
+}
+
+.logo{
+    width: 4em;
+}
+.logo__imagen{
+    width: 100%;
+    background: transparent;
+}
+.menu__boton{
+    padding: .5em 1em;
+    background: transparent;
+    color: #fff;
+    font-weight: bold;
+    margin-right: 1em;
+    text-transform: uppercase;
+    border-radius: 5px;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    transition: all 1s ease-in-out;
+}
+.menu__boton:hover{
+    border-bottom: .7px solid #fff;
+}
+.hamburguesa{
+    display: none;
+}
+
+@media screen and (max-width: 500px) {
+    .menu__enlaces{
+        display: none;
+    }
+    .hamburguesa{
+        display: block;
+        position: relative;
+    }
+    .hamburguesa__menu i{
+        color: #000;
+        font-size: 2em;
+        border: none;
+        outline: none;
+        cursor: pointer;
+        position: absolute;
+        top: 0;
+        right: 0;
+        transition: all .5s ease-in-out;
+    }
+    .hamburguesa__enlaces{
+        display: none;
+        flex-direction: column;
+        position: absolute;
+        right: 0;
+    }
+    .hamburguesa__boton{
+        border: none;
+        outline: none;
+        cursor: pointer;
+        padding: .5em 1em;
+        margin-top: 1em;
+        border-top: .7px solid #000;
+    }
+    .hamburguesa__enlaces--entrada{
+        display: flex;
+        animation: entra 1s;
+    }
+    .hamburguesa__enlaces--salida{
+        display: flex;
+        animation: sale 1s;
+    }
+    @keyframes entra {
+        0%{transform: translateX(100%);}
+        100%{transform: translateX(0%);}
+    }
+    @keyframes sale {
+        0%{transform: translateX(0%);}
+        100%{transform: translateX(150%);}
+    }
+}

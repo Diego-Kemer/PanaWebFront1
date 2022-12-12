@@ -1,1 +1,18 @@
-<p>header works!</p>
+<header>
+    <div class="carousel">
+        <button class="carousel__boton carousel__boton--back" (click)="back()"><i class="icofont-curved-left"></i></button>
+        <div>
+            <div class="carousel__conteiner">
+                <div class="carousel__item" #irse>
+                    <img class="carousel__imagen" src="{{imagenAnimada}}" alt="" width="100%">
+                </div>
+                <div class="carousel__item" #quedarse>
+                    <img class="carousel__imagen" src="{{imagen}}" alt="" width="100%">
+                </div>
+
+            </div>
+        </div>
+
+        <button class="carousel__boton carousel__boton--nex" (click)="nex()"><i class="icofont-curved-right"></i></button>
+    </div>
+</header>
