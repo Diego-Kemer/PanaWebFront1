@@ -1,5 +1,5 @@
 import { Component, ElementRef, OnInit, Renderer2, ViewChild } from '@angular/core';
-import { interval } from 'rxjs';
+import { interval, timer } from 'rxjs';
 
 @Component({
   selector: 'app-header',
@@ -9,51 +9,54 @@ import { interval } from 'rxjs';
 export class HeaderComponent implements OnInit {
   @ViewChild('quedarse') quedarse!: ElementRef;
   @ViewChild('irse') irse!: ElementRef;
-  public imagen: string = 'assets/img/img4.jpg';
-  public imagenAnimada: string = 'assets/img/img4.jpg'
+  public imagen: string = 'assets/img/img1.jpg';
+  public imagenAnimada: string = 'assets/img/img1.jpg'
   public imagenes: Array<string> = ['assets/img/img1.jpg', 'assets/img/img2.jpg', 'assets/img/img3.jpg', 'assets/img/img4.jpg'];
   public numero: number = 0;
 
   constructor(private renderer: Renderer2) { }
 
   ngOnInit(): void {
-    // this.imagen = this.imagenes[3]
-    interval(5000).subscribe(v =>{
-      v > 0 ? this.imagenAnimada = this.imagen : false;
-      this.numero < this.imagenes.length ? this.imagen = this.imagenes[this.numero] : false;
-      this.numero++;
-      this.numero >= this.imagenes.length ? this.numero = 0 : false;
-      this.renderer.addClass(this.quedarse.nativeElement, 'carousel__item--quedarse')
-      this.renderer.addClass(this.irse.nativeElement, 'carousel__item--irse')
-      setTimeout(()=>{
-        this.renderer.removeClass(this.quedarse.nativeElement, 'carousel__item--quedarse')
-        this.renderer.removeClass(this.irse.nativeElement, 'carousel__item--irse')
-      }, 1100)
+    interval(7000).subscribe(()=>{
+      let indice = this.imagenes.indexOf(this.imagen)
+      if(indice + 1 >= this.imagenes.length) {
+        this.logic(3, 0, 'carousel__item--quedarse', 'carousel__item--irse')
+        return
+      };
+      console.log(indice)
+      this.logic(indice, indice + 1, 'carousel__item--quedarse', 'carousel__item--irse')
     })
   }
 
   nex(){
-    if(this.quedarse.nativeElement.classList[1] == 'carousel__item--quedarse'){return}
-    if(this.numero < this.imagenes.length){
-      this.imagenAnimada = this.imagen;
-      this.numero < this.imagenes.length ? this.imagen = this.imagenes[this.numero] : false;
-      this.numero++;
-      this.numero >= this.imagenes.length ? this.numero = 0 : false;
-      this.renderer.addClass(this.quedarse.nativeElement, 'carousel__item--quedarse')
-      this.renderer.addClass(this.irse.nativeElement, 'carousel__item--irse')
-      setTimeout(()=>{
-        this.renderer.removeClass(this.quedarse.nativeElement, 'carousel__item--quedarse')
-        this.renderer.removeClass(this.irse.nativeElement, 'carousel__item--irse')
-      }, 1000)
-    }else{console.log('mal')}
+    const indice = this.imagenes.indexOf(this.imagen)
+    if(this.quedarse.nativeElement.classList[1] === 'carousel__item--quedarse'){return}
+    if(indice + 1 >= this.imagenes.length) {
+      return
+    };
+    this.logic(indice, indice + 1, 'carousel__item--quedarse', 'carousel__item--irse')
   }
 
   back(){
-    if(this.numero > 0){
-      if(this.imagen == this.imagenes[this.numero-1] && this.numero > 1){this.numero = this.numero - 2}else{this.numero--;} 
-      this.imagen = this.imagenes[this.numero]
-      console.log(this.numero)
-    }else{console.log('mal')}
+    const indice = this.imagenes.indexOf(this.imagen)
+    if(this.quedarse.nativeElement.classList[1] === 'carousel__item--quedarse1'){return}
+    if(indice - 1 < 0) {return};
+    this.logic(indice, indice - 1, 'carousel__item--quedarse1', 'carousel__item--irse1')
+  }
+
+  logic(index: number, calculo: any, clase1: string, clase2: string){
+    const anterior = index;
+    const nueva = calculo;
+    this.imagenAnimada = this.imagenes[anterior]
+    this.imagen = this.imagenes[nueva]
+    const element = this.quedarse.nativeElement;
+    const element1 = this.irse.nativeElement;
+    this.renderer.addClass(element, clase1)
+    this.renderer.addClass(element1, clase2)
+    timer(1000).subscribe(()=>{
+      this.renderer.removeClass(element, clase1)
+      this.renderer.removeClass(element1, clase2)
+    })
   }
 
 }

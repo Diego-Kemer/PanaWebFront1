@@ -14,7 +14,7 @@
     outline: none;
     transition: all .5s;
     cursor: pointer;
-    z-index: 2;
+    z-index: 3;
 }
 .carousel__boton:hover{
     color: #fff;
@@ -23,6 +23,25 @@
     width: 100%;
     position: relative;
     height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.carousel__texto{
+    color: #fff;
+    text-align: center;
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    font-size: 2em;
+    z-index: 2;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to left bottom,  transparent 50%,var(--colorPri) 110%);
+}
+.carousel__texto p{
+    width: 50%;
 }
 .carousel__boton--nex{
     right: .5em;
@@ -56,4 +75,27 @@
 @keyframes quedarse {
     0%{transform: translateX(-100%);}
     100%{transform: translateX(0%);}
+}
+.carousel__item--irse1{
+    animation: irse1 .9s;
+}
+@keyframes irse1 {
+    0%{transform: translateX(0%);}
+    100%{transform: translateX(-100%);}
+}
+.carousel__item--quedarse1{
+    animation: quedarse1 .9s;
+}
+@keyframes quedarse1 {
+    0%{transform: translateX(100%);}
+    100%{transform: translateX(0%);}
+}
+
+@media screen and (max-width: 600px) {
+    .carousel{
+        font-size: 16px;
+    }
+    .carousel__conteiner{
+        height: 50vh;
+    }
 }
