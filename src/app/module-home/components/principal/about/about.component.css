@@ -17,8 +17,13 @@
     width: 50%;
     padding: 3em 1em;
     height: 100%;
+    
 }
 .about__texto{
+    overflow: hidden;
+    padding: 3em 0px;
+}
+.about__textoAbout{
     display: flex;
     flex-direction: column;
     justify-content: center;

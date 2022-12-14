@@ -1,0 +1,22 @@
+.work{
+    width: 100%;
+    font-size: 20px;
+    margin: 1rem;
+    padding: 1.4rem 0px;
+}
+.work__container{
+    max-width: 1320px;
+    margin: auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 3em 0px;
+}
+.work__description{
+    width: 50%;
+    padding: 3em 1em;
+}
+.work__description p{
+    line-height: 1.5em;
+    margin-top: 1em;
+}
