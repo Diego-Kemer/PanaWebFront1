@@ -23,7 +23,6 @@ export class HeaderComponent implements OnInit {
         this.logic(3, 0, 'carousel__item--quedarse', 'carousel__item--irse')
         return
       };
-      console.log(indice)
       this.logic(indice, indice + 1, 'carousel__item--quedarse', 'carousel__item--irse')
     })
   }

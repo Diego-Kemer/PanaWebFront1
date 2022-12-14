@@ -1,21 +1,25 @@
-<form action="" class="form">
+<form [formGroup]="form" class="form">
     <div class="form__block">
       <label for="name">Nombre:</label>
-      <input type="text" id="name">
+      <input formControlName="name" type="text" id="name">
+      <i class="form__error" *ngIf="form.get('name')?.touched && form.get('name')?.errors">Este campo debe tener al menos 3 caracteres</i>
     </div>
     <div class="form__block">
       <label for="lastname">Apellido:</label>
-      <input type="text" id="lastname">
+      <input formControlName="lastname" type="text" id="lastname">
+      <i class="form__error" *ngIf="form.get('lastname')?.touched && form.get('lastname')?.errors">Este campo debe tener al menos 3 caracteres</i>
     </div>
     <div class="form__block">
       <label for="email">Email:</label>
-      <input type="text" id="email">
+      <input formControlName="email" type="text" id="email">
+      <i class="form__error" *ngIf="form.get('email')?.touched && form.get('email')?.errors">Ingresa un email válido</i>
     </div>
     <div class="form__mensaje">
       <label for="mensajje">Mensaje:</label>
-      <textarea name="mensaje" id="mensaje" cols="30" rows="10"></textarea>
+      <textarea formControlName="mensaje" name="mensaje" id="mensaje" cols="30" rows="10"></textarea>
+      <i class="form__error" *ngIf="form.get('mensaje')?.touched && form.get('lastname')?.errors">Este campo debe tener al menos 10 caracteres</i>
     </div>
     <div class="form__send">
-      <button>Enviar</button>
+      <button [disabled]="form.invalid" (click)="send()">Enviar</button>
     </div>
   </form>

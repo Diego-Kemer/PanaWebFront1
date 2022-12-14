@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { NavComponent } from './components/nav/nav.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { FormContactoComponent } from './components/form-contacto/form-contacto.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 
 
@@ -10,10 +11,12 @@ import { FormContactoComponent } from './components/form-contacto/form-contacto.
   declarations: [
     NavComponent,
     FooterComponent,
-    FormContactoComponent
+    FormContactoComponent,
   ],
   imports: [
-    CommonModule
+    CommonModule,
+    ReactiveFormsModule,
+    FormsModule
   ],
   exports: [
     NavComponent,
