@@ -1,0 +1,37 @@
+.footer{
+    width: 100%;
+    font-size: 20px;
+    padding: 1.4rem 0px;
+    background: var(--colorTer);
+    color: #fff;
+}
+.footer__container{
+    max-width: 1320px;
+    margin: auto;
+}
+.footer__redes-logo{
+    display: flex;
+    justify-content: space-between;
+}
+.footer__redes{
+    display: flex;
+    /* flex-direction: column; */
+    gap: .5em;
+}
+.footer__redes a{
+    color: #fff;
+    text-decoration: none;
+}
+.logo{
+    width: 4em;
+}
+.logo__imagen{
+    width: 4em;
+    background: transparent;
+}
+.footer__firma{
+    margin-top: 1em;
+    border-top: .5px solid #fff;
+    padding-top: .5em;
+    font-size: .6em;
+}
