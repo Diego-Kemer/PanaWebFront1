@@ -50,3 +50,10 @@
     color: var(--colorPri);
     font-size: .5em;
 }
+
+@media screen and (max-width: 600px){
+    .form{
+        width: 100%;
+        margin: 1em auto;
+    }
+}

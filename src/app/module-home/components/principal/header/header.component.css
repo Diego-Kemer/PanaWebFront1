@@ -98,4 +98,13 @@
     .carousel__conteiner{
         height: 50vh;
     }
+    .carousel__texto{
+        font-size: 1em;
+    }
+    .carousel__boton--nex{
+        right: 0em;
+    }
+    .carousel__boton--back{
+        left: 0em;
+    }
 }
