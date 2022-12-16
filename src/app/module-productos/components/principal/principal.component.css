@@ -1,0 +1,20 @@
+.nav{
+    background: var(--colorTer);
+    height: 6.5rem;
+    position: relative;
+}
+.productos{
+    max-width: 1320px;
+    margin: auto;
+    font-size: 20px;
+    padding: 1.4rem 0px;
+}
+.productos__header{
+    background: var(--colorPri);
+    padding: 1em;
+    margin: 1em 0px;
+    color: #fff;
+}
+.productos__body{
+    padding: 2em 1em;
+}

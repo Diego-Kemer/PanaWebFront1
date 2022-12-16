@@ -1,0 +1,18 @@
+.buscador{
+    font-size: 20px;
+}
+.buscador__container{
+    padding: 1em;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid var(--colorTer);
+}
+.buscador__categoria, .buscador__palabra{
+    display: flex;
+    gap: 1em;
+    align-items: center;
+}
+.buscador__palabra input, .buscador__categoria select{
+    padding: .5em;
+}

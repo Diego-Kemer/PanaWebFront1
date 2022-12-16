@@ -32,7 +32,8 @@
     transition: all 1s ease-in-out;
 }
 .menu__boton:hover{
-    border-bottom: .7px solid #fff;
+    background: #fff;
+    color: var(--colorTer);
 }
 .hamburguesa{
     display: none;
