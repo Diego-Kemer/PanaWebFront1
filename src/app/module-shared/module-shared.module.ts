@@ -5,6 +5,8 @@ import { FooterComponent } from './components/footer/footer.component';
 import { FormContactoComponent } from './components/form-contacto/form-contacto.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
+import { FormProductoComponent } from './components/form-producto/form-producto.component';
+import { LogoComponent } from './components/logo/logo.component';
 
 
 
@@ -13,6 +15,8 @@ import { RouterModule } from '@angular/router';
     NavComponent,
     FooterComponent,
     FormContactoComponent,
+    FormProductoComponent,
+    LogoComponent,
   ],
   imports: [
     CommonModule,
@@ -23,7 +27,9 @@ import { RouterModule } from '@angular/router';
   exports: [
     NavComponent,
     FooterComponent,
-    FormContactoComponent
+    FormContactoComponent,
+    FormProductoComponent,
+    LogoComponent
   ]
 })
 export class ModuleSharedModule { }

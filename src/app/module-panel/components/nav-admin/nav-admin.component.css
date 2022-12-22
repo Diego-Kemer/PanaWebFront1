@@ -1,0 +1,32 @@
+.nav{
+    width: 100%;
+    background: var(--colorTer);
+    font-size: 20px;
+    padding: 1em;
+}
+.nav__container{
+    max-width: 1320px;
+    margin: 0px auto;
+    display: flex;
+    padding: 1em;
+    justify-content: space-between;
+    align-items: center;
+}
+
+
+.nav__boton{
+    padding: .2em .5em;
+    color: #fff;
+    background: transparent;
+    border: none;
+    outline: none;
+    border-radius: 5px;
+    cursor: pointer;
+    text-transform: uppercase;
+    font-weight: bold;
+    margin-left: 1em;
+}
+.nav__boton:hover{
+    background: #fff;
+    color: var(--colorTer);
+}

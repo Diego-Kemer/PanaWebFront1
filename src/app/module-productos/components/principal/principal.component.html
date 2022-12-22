@@ -11,15 +11,12 @@
         <app-buscador></app-buscador>
     </div>
     <div class="productos__body">
-        <app-producto></app-producto>
-        <app-producto></app-producto>
-        <app-producto></app-producto>
-        <app-producto></app-producto>
-        <app-producto></app-producto>
-        <app-producto></app-producto>
-        <app-producto></app-producto>
-        <app-producto></app-producto>
-        <app-producto></app-producto>
+        <app-producto *ngFor="let item of productos" [producto]="item"></app-producto>
+    </div>
+    <div class="productos__botones">
+        <p>Página {{page}} de {{totalPages}}</p>
+        <button class="productos__boton productos__boton--back" *ngIf="prev" title="Anterior" (click)="previo()"><i class="icofont-arrow-left"></i></button>
+        <button class="productos__boton productos__boton--nex" *ngIf="next" title="Siguiente" (click)="siguiente()"><i class="icofont-arrow-right"></i></button>
     </div>
 </div>
 <app-footer></app-footer>

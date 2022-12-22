@@ -1,0 +1,29 @@
+<div class="form">
+    <form [formGroup]="fg">
+        <div class="form-block">
+            <label class="form-label" for="name">Nombre:</label>
+            <input class="form-campo" type="text" id="name" formControlName="name">
+        </div>
+        <div class="form-block">
+            <label class="form-label" for="description">Descripción:</label>
+            <textarea class="form-campo" type="text" id="description" formControlName="description"></textarea>
+        </div>
+        <div class="form-block">
+            <label class="form-label" for="price">Precio</label>
+            <input class="form-campo" type="number" id="price" formControlName="price">
+        </div>
+        <div class="form-block">
+            <label class="form-label" for="categoria">Categoría:</label>
+            <select class="form-campo" name="categoria" id="categoria" formControlName="categoria">
+                <option value="Categoria1">Categoria1</option>
+            </select>
+        </div>
+        <div class="form-block">
+            <label class="form-label" for="imagen">Imagen:</label>
+            <input class="form-campo" type="file" id="imagen" formControlName="imagen" (change)="handleImage($event)">
+        </div>
+        <div class="form-send">
+            <button class="form-button" (click)="send()">Guardar</button>
+        </div>
+    </form>
+</div>

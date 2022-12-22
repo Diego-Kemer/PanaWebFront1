@@ -94,6 +94,16 @@
             ],
             "scripts": []
           }
+        },
+        "deploy": {
+          "builder": "@angular/fire:deploy",
+          "options": {
+            "prerender": false,
+            "ssr": false,
+            "browserTarget": "panaderiaWeb:build:production",
+            "firebaseProject": "panaderia1-e9244",
+            "firebaseHostingSite": "panaderia1-e9244"
+          }
         }
       }
     }

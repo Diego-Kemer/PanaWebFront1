@@ -10,14 +10,6 @@
     top: 0;
     z-index: 3;
 }
-
-.logo{
-    width: 4em;
-}
-.logo__imagen{
-    width: 100%;
-    background: transparent;
-}
 .menu__boton{
     padding: .5em 1em;
     background: transparent;

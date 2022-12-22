@@ -1,0 +1,14 @@
+{
+  "targets": {
+    "panaderia1-e9244": {
+      "hosting": {
+        "panaderiaWeb": [
+          "panaderia1-e9244"
+        ]
+      }
+    }
+  },
+  "projects": {
+    "default": "panaderia1-e9244"
+  }
+}

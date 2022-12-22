@@ -1,12 +1,12 @@
 <div class="producto">
     <div class="producto__container">
         <div class="producto__principal">
-            <img class="producto__imagen" src="assets/img/img1.jpg" alt="">
-            <h4>Producto</h4>
+            <img class="producto__imagen" src="{{producto.imagen}}" alt="">
+            <h4>{{producto.name}}</h4>
         </div>
         <div class="producto__description">
-            <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Sint, iste maxime reiciendis placeat corporis rerum?</p>
-            <span>$200</span>
+            <p>{{producto.description}}</p>
+            <span>{{producto.price | currency}}</span>
         </div>
     </div>
 </div>
