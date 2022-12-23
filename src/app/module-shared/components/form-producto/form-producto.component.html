@@ -1,29 +1,35 @@
 <div class="form">
+    <h2 class="form__title">Editar producto</h2>
     <form [formGroup]="fg">
-        <div class="form-block">
-            <label class="form-label" for="name">Nombre:</label>
-            <input class="form-campo" type="text" id="name" formControlName="name">
+        <div class="form__block">
+            <label class="form__label" for="name">Nombre:</label>
+            <input class="form__campo" type="text" id="name" formControlName="name">
+            <span class="form__error" *ngIf="fg.get('name')?.touched && fg.get('name')?.errors">Este campo debe contener como mínimo 3 caracteres</span>
         </div>
-        <div class="form-block">
-            <label class="form-label" for="description">Descripción:</label>
-            <textarea class="form-campo" type="text" id="description" formControlName="description"></textarea>
+        <div class="form__block">
+            <label class="form__label" for="description">Descripción:</label>
+            <textarea rows="5" class="form__campo" type="text" id="description" formControlName="description"></textarea>
+            <span class="form__error" *ngIf="fg.get('description')?.touched && fg.get('description')?.errors">Este campo debe contener como mínimo 10 caracteres</span>
         </div>
-        <div class="form-block">
-            <label class="form-label" for="price">Precio</label>
-            <input class="form-campo" type="number" id="price" formControlName="price">
+        <div class="form__block">
+            <label class="form__label" for="price">Precio</label>
+            <input class="form__campo" placeholder="$" type="number" id="price" formControlName="price">
+            <span class="form__error" *ngIf="fg.get('price')?.touched && fg.get('price')?.errors">Este campo es obligatorio</span>
         </div>
-        <div class="form-block">
-            <label class="form-label" for="categoria">Categoría:</label>
-            <select class="form-campo" name="categoria" id="categoria" formControlName="categoria">
+        <div class="form__block">
+            <label class="form__label" for="categoria">Categoría:</label>
+            <select class="form__campo form__campo" name="categoria" id="categoria" formControlName="categoria">
                 <option value="Categoria1">Categoria1</option>
             </select>
+            <span class="form__error" *ngIf="fg.get('categoria')?.touched && fg.get('categoria')?.errors">Debe seleccionar una categoría</span>
         </div>
-        <div class="form-block">
-            <label class="form-label" for="imagen">Imagen:</label>
-            <input class="form-campo" type="file" id="imagen" formControlName="imagen" (change)="handleImage($event)">
+        <div class="form__block">
+            <label class="form__label" for="imagen">Seleccionar imagen: <i class="icofont-image"></i></label>
+            <input hidden class="form__campo" type="file" id="imagen" formControlName="imagen" (change)="handleImage($event)">
+            <span class="form__error" *ngIf="fg.get('imagen')?.touched && fg.get('imagen')?.errors">Debe seleccionar una imagen</span>
         </div>
-        <div class="form-send">
-            <button class="form-button" (click)="send()">Guardar</button>
+        <div class="form__send">
+            <button class="form__button" [disabled]="fg.invalid" [ngStyle]="{'filter': fg.invalid ? 'brightness(.5)' : 'brightness(1)'}" (click)="send()">Guardar</button>
         </div>
     </form>
 </div>

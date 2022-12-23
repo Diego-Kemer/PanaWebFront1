@@ -17,15 +17,17 @@ export class FormProductoComponent implements OnInit{
   ngOnInit(){
     this.fg = this.fb.group({
       name: ['', [Validators.required, Validators.minLength(3)]],
-      price: [Number, [Validators.required]],
+      price: [ ,[Validators.required]],
       description: ['', [Validators.required, Validators.minLength(10)]],
       categoria: ['', [Validators.required, Validators.minLength(3)]],
       imagen: ['', [Validators.required]]
     })
+    
   }
 
   handleImage(e: any){
     this.image = e.target.files[0]
+    console.log(this.fg.value)
   }
 
   send(){
