@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Producto } from 'src/app/modelo/producto';
 import { ApiServicesService } from 'src/app/services/api-services.service';
 
 @Component({
@@ -10,6 +11,8 @@ import { ApiServicesService } from 'src/app/services/api-services.service';
 export class FormProductoComponent implements OnInit{
   public fg!: FormGroup;
   public image!: any;
+  @Input() producto!: Producto;
+  @Input() title!: string;
 
   constructor(private fb: FormBuilder,
               private apiServ: ApiServicesService){}
@@ -22,12 +25,33 @@ export class FormProductoComponent implements OnInit{
       categoria: ['', [Validators.required, Validators.minLength(3)]],
       imagen: ['', [Validators.required]]
     })
-    
+    this.fg.valueChanges.subscribe(res=>{
+      this.producto.name = res.name
+      this.producto.description = res.description
+      this.producto.price = res.price
+    })
+    this.producto = {
+      name: '',
+      description: '',
+      imagen: '',
+      price: NaN,
+      categoria: '',
+      _id: ''
+    }
   }
+  
 
   handleImage(e: any){
     this.image = e.target.files[0]
-    console.log(this.fg.value)
+    const file = e.target.files[0]
+    const filereader = new FileReader()
+    filereader.readAsDataURL(file)
+    filereader.onload = ()=>{
+      this.producto.imagen = filereader.result
+    }
+    filereader.onerror = (error)=>{
+      console.log(error)
+    }
   }
 
   send(){
