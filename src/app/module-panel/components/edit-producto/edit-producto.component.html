@@ -1,1 +1,19 @@
-<app-form-producto [title]="'Editar producto'" [producto]="item"></app-form-producto>
+<div class="lista-productos">
+    <div class="lista-productos__container">
+        <div class="lista-productos__item" *ngFor="let item of productos">
+            <h4 class="lista-productos__nombre">{{item.name}}</h4>
+            <span class="lista-productos__price">{{item.price | currency}}</span>
+            <img src="{{item.imagen}}" alt="{{item.name}}" width="50px" height="70px">
+            <div class="lista-productos__botones">
+                <button class="lista-productos__boton lista-productos__boton--edit" (click)="edit(item)" title="Editar"><i class="icofont-edit-alt"></i></button>
+                <button class="lista-productos__boton lista-productos__boton--delete" title="Eliminar"><i class="icofont-ui-delete"></i></button>
+            </div>
+        </div>
+    </div>
+</div>
+<div *ngIf="editar" class="edit">
+    <div class="edit__container">
+        <button class="edit__cerrar edit__cerrar--posicion" (click)="editar = false"><i class="icofont-close"></i></button>
+        <app-form-producto [title]="'Editar producto'" [producto]="item"></app-form-producto>
+    </div>
+</div>

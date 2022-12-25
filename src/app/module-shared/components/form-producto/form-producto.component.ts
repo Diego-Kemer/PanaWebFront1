@@ -30,13 +30,19 @@ export class FormProductoComponent implements OnInit{
       this.producto.description = res.description
       this.producto.price = res.price
     })
-    this.producto = {
-      name: '',
-      description: '',
-      imagen: '',
-      price: NaN,
-      categoria: '',
-      _id: ''
+    
+    if(this.producto){
+      console.log(this.producto)
+    }
+    else{
+      this.producto = {
+        name: '',
+        description: '',
+        imagen: '',
+        price: NaN,
+        categoria: '',
+        _id: ''
+      }
     }
   }
   

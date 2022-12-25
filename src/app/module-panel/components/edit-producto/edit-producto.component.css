@@ -1,0 +1,71 @@
+.lista__productos{
+    width: 100%;
+    padding: 1em;
+    font-size: 20px;
+}
+.lista-productos__container{
+    max-width: 1320px;
+}
+.lista-productos__item{
+    width: 100%;
+    padding: 1em;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: .7px solid var(--colorPri);
+}
+.lista-productos__item:hover{
+    background: rgba(var(--colorPriRGB), 0.5) ;
+}
+.lista-productos__nombre{
+    text-transform: capitalize;
+}
+.lista-productos__botones{
+    padding: 0px .5em;
+}
+.lista-productos__boton{
+    padding: .5em;
+    color: #fff;
+    margin-left: 1em;
+    border: none;
+    outline: none;
+    border-radius: 3px;
+    cursor: pointer;
+}
+.lista-productos__boton--edit{
+    background: rgb(86, 223, 59);
+}
+.lista-productos__boton--delete{
+    background: rgb(245, 69, 69);
+}
+
+.edit{
+    position: absolute;
+    width: 100%;
+    height: 100vh;
+    top: 0;
+    right: 0;
+    left: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(255, 255, 255, 0.705);
+}
+.edit__container{
+    max-width: 1320px;
+    width: 100%;
+    position: relative;
+    margin: auto;
+}
+.edit__cerrar--posicion{
+    position: absolute;
+    font-size: 1.5em;
+    top: -1em;
+    right: -1em;
+    color: #fff;
+    background: #000;
+    border: none;
+    outline: none;
+    border-radius: 3px;
+    cursor: pointer;
+}
