@@ -2,8 +2,11 @@
     <div class="buscador__container">
         <div class="buscador__categoria">
             <h4>Categoría: </h4>
-            <select name="categorias" id="categorias">
-                <option value="categoria">Categoría</option>
+            <select #select (change)="pedir()" name="categorias" id="categorias">
+                <option value="Categoria1">Categoría1</option>
+                <option value="Categoria2">Categoría2</option>
+                <option value="Categoria3">Categoría3</option>
+                <option value="Categoria4">Categoría4</option>
             </select>
         </div>
         <div class="buscador__palabra">

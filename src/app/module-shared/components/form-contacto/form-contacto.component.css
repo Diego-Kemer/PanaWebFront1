@@ -21,6 +21,7 @@
     border-bottom: .7px solid var(--colorPri);
     outline: none;
     padding: .5em;
+    color: #fff;
 }
 .form__mensaje, .form__send{
     grid-column: 1/3;

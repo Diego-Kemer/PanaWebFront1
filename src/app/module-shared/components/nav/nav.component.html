@@ -1,7 +1,8 @@
 <nav class="menu">
     <app-logo></app-logo>
     <div class="menu__enlaces">
-        <button class="menu__boton" routerLink='/productos' >Productos</button>
+        <button *ngIf="producto" class="menu__boton" routerLink='/productos' >Productos</button>
+        <button *ngIf="!producto" class="menu__boton" routerLink='/' >Home</button>
         <button class="menu__boton">Contacto</button>
     </div>
     <div class="hamburguesa">

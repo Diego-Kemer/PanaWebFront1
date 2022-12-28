@@ -1,4 +1,5 @@
 import { Component, ElementRef, OnInit, Renderer2, ViewChild } from '@angular/core';
+import { Router } from '@angular/router';
 import { timer } from 'rxjs';
 
 @Component({
@@ -9,11 +10,18 @@ import { timer } from 'rxjs';
 export class NavComponent implements OnInit {
   @ViewChild('enlaces') enlaces!: ElementRef;
   @ViewChild('btn') btn!: ElementRef;
+  public producto!: boolean;
   public icono: string = 'icofont-navigation-menu'
 
-  constructor(private renderer: Renderer2) { }
+  constructor(private renderer: Renderer2,
+              private router: Router) { }
 
   ngOnInit(): void {
+    if(this.router.url != '/productos'){
+      this.producto = true
+    }else{
+      this.producto = false
+    }
   }
   hamburguesa(){
     const elemento = this.enlaces.nativeElement;

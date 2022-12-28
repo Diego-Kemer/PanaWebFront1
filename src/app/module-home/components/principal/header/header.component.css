@@ -41,7 +41,8 @@
     background: linear-gradient(to left bottom,  rgba(0, 0, 0, 0.37) 50%,var(--colorPri) 110%);
 }
 .carousel__texto p{
-    width: 50%;
+    width: 60%;
+    text-align: center;
 }
 .carousel__boton--nex{
     right: .5em;

@@ -23,6 +23,10 @@ export class ApiServicesService {
     return this.http.get<Array<any>>(`${this.appUrl}api/producto/${page}`)
   }
 
+  traerProductosPorCategoria(page: number, categoria: string): Observable<Array<any>>{
+    return this.http.get<Array<any>>(`${this.appUrl}api/producto/${categoria}/${page}`)
+  }
+
   sendProduct(prod: Producto, imagen: any){
     this.uploadImage(imagen);
     this.image.pipe(

@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ElementRef, EventEmitter, Output, ViewChild } from '@angular/core';
 
 @Component({
   selector: 'app-buscador',
@@ -6,5 +6,13 @@ import { Component } from '@angular/core';
   styleUrls: ['./buscador.component.css']
 })
 export class BuscadorComponent {
+  @ViewChild('select') select!: ElementRef
+  @Output() productosPorCate = new EventEmitter;
+  public categoria!: any;
 
+
+  pedir(){
+    const cate = this.select.nativeElement.value;
+    this.productosPorCate.next(cate)
+  }
 }
