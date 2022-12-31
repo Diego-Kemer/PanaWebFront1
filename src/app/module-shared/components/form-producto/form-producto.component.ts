@@ -1,41 +1,45 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output, ChangeDetectionStrategy } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { Producto } from 'src/app/modelo/producto';
 import { ApiServicesService } from 'src/app/services/api-services.service';
 
 @Component({
   selector: 'app-form-producto',
   templateUrl: './form-producto.component.html',
-  styleUrls: ['./form-producto.component.css']
+  styleUrls: ['./form-producto.component.css'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class FormProductoComponent implements OnInit{
   public fg!: FormGroup;
   public image!: any;
+  public productoNew!: any;
+  public rutaAdd!: boolean;
   @Input() producto!: Producto;
   @Input() title!: string;
+  @Output() actualizar = new EventEmitter;
 
   constructor(private fb: FormBuilder,
-              private apiServ: ApiServicesService){}
+              private apiServ: ApiServicesService,
+              private router: Router){}
 
   ngOnInit(){
-    this.fg = this.fb.group({
-      name: ['', [Validators.required, Validators.minLength(3)]],
-      price: [ ,[Validators.required]],
-      description: ['', [Validators.required, Validators.minLength(10)]],
-      categoria: ['', [Validators.required, Validators.minLength(3)]],
-      imagen: ['', [Validators.required]]
-    })
-    this.fg.valueChanges.subscribe(res=>{
-      this.producto.name = res.name
-      this.producto.description = res.description
-      this.producto.price = res.price
-    })
-    
-    if(this.producto){
-      console.log(this.producto)
+    console.log()
+    if(this.router.url == '/admin/addProd'){
+      this.rutaAdd = true;
+    }else{
+      this.rutaAdd = false
     }
-    else{
-      this.producto = {
+    if(this.producto){
+      this.productoNew = {
+        nombre: this.producto.name,
+        descripcion: this.producto.description,
+        precio: this.producto.price,
+        img: this.producto.imagen,
+        categoria: this.producto.categoria
+      }
+    }else{
+      this.productoNew = {
         name: '',
         description: '',
         imagen: '',
@@ -44,6 +48,20 @@ export class FormProductoComponent implements OnInit{
         _id: ''
       }
     }
+    this.fg = this.fb.group({
+      name: [this.productoNew.nombre, [Validators.required, Validators.minLength(3)]],
+      price: [ this.productoNew.precio,[Validators.required]],
+      description: [this.productoNew.descripcion, [Validators.required, Validators.minLength(10)]],
+      categoria: [this.productoNew.categoria, [Validators.required, Validators.minLength(3)]],
+      imagen: [this.productoNew.img, [Validators.required]]
+    })
+    this.fg.valueChanges.subscribe(res=>{
+      this.productoNew.nombre = res.name
+      this.productoNew.descripcion = res.description
+      this.productoNew.precio = res.price
+    })
+    
+    
   }
   
 
@@ -53,7 +71,7 @@ export class FormProductoComponent implements OnInit{
     const filereader = new FileReader()
     filereader.readAsDataURL(file)
     filereader.onload = ()=>{
-      this.producto.imagen = filereader.result
+      this.productoNew.img = filereader.result
     }
     filereader.onerror = (error)=>{
       console.log(error)
@@ -61,6 +79,20 @@ export class FormProductoComponent implements OnInit{
   }
 
   send(){
-    this.apiServ.sendProduct(this.fg.value, this.image)
+    this.apiServ.sendProduct(this.fg.value, this.image).subscribe(r=>{
+      this.fg.reset()
+      this.image = ''
+    })  
+  }
+  edit(){
+    if(this.image){
+      this.apiServ.editProducto(this.fg.value, this.producto._id, this.image).subscribe(res=>{
+        this.actualizar.next(true)
+      })
+    }else{
+      this.apiServ.editProducto(this.fg.value, this.producto._id, null).subscribe(res=>{
+        this.actualizar.next(true)
+      })
+    }
   }
 }

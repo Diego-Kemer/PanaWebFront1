@@ -5,6 +5,7 @@ import { getDownloadURL } from '@firebase/storage';
 import { map, mergeMap, Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { Producto } from '../modelo/producto';
+import { UiServiceService } from './ui-service.service';
 
 
 @Injectable({
@@ -16,7 +17,8 @@ export class ApiServicesService {
   private appUrl: string = environment.apiUrl;
 
   constructor( private storage: Storage,
-                private http: HttpClient) { }
+                private http: HttpClient,
+                private uiServ: UiServiceService) { }
 
   
   traerProductos(page: number): Observable<Array<any>>{
@@ -27,17 +29,16 @@ export class ApiServicesService {
     return this.http.get<Array<any>>(`${this.appUrl}api/producto/${categoria}/${page}`)
   }
 
-  sendProduct(prod: Producto, imagen: any){
+  sendProduct(prod: Producto, imagen: any): Observable<any>{
     this.uploadImage(imagen);
-    this.image.pipe(
+    return this.image.pipe(
       map((res: any)=>prod.imagen = res),
       mergeMap(()=> this.http.post<any>(`${this.appUrl}api/producto/`, prod))
-    ).subscribe(r=>{
-      console.log(r)
-    })    
+    )  
   }
 
   private uploadImage(image: any){
+    this.uiServ.show()
     this.filePath = `images/${image.name}`;
     const fileRef = ref(this.storage, this.filePath);
     uploadBytes(fileRef, image)
@@ -46,5 +47,21 @@ export class ApiServicesService {
       this.image.next(urlImg)
     })
     .catch(error=> console.log(error))
+  }
+
+  editProducto(producto: any, id: string, img: any):Observable<any>{
+    if (img) {
+      this.uploadImage(img);
+      return this.image.pipe(
+        map(res => producto.imagen = res),
+        mergeMap(()=> this.http.patch<any>(`${this.appUrl}api/producto/${id}`, producto))
+      )
+    } else {
+      return this.http.patch<any>(`${this.appUrl}api/producto/${id}`, producto)
+    }
+  }
+
+  eliminarProducto(id: string): Observable<any>{
+    return this.http.delete<any>(`${this.appUrl}api/producto/${id}`)
   }
 }

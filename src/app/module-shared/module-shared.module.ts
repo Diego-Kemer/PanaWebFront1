@@ -7,6 +7,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { FormProductoComponent } from './components/form-producto/form-producto.component';
 import { LogoComponent } from './components/logo/logo.component';
+import { LoadingComponent } from './components/loading/loading.component';
 
 
 
@@ -17,6 +18,7 @@ import { LogoComponent } from './components/logo/logo.component';
     FormContactoComponent,
     FormProductoComponent,
     LogoComponent,
+    LoadingComponent
   ],
   imports: [
     CommonModule,
@@ -29,7 +31,8 @@ import { LogoComponent } from './components/logo/logo.component';
     FooterComponent,
     FormContactoComponent,
     FormProductoComponent,
-    LogoComponent
+    LogoComponent,
+    LoadingComponent
   ]
 })
 export class ModuleSharedModule { }

@@ -26,11 +26,12 @@
             </div>
             <div class="form__block">
                 <label class="form__label" for="imagen">Seleccionar imagen: <i class="icofont-image"></i></label>
-                <input hidden class="form__campo" type="file" id="imagen" formControlName="imagen" (change)="handleImage($event)">
+                <input hidden class="form__campo" formControlName="imagen" type="file" id="imagen"  (change)="handleImage($event)">
                 <span class="form__error" *ngIf="fg.get('imagen')?.touched && fg.get('imagen')?.errors">Debe seleccionar una imagen</span>
             </div>
             <div class="form__send">
-                <button class="form__button" [disabled]="fg.invalid" [ngStyle]="{'filter': fg.invalid ? 'brightness(.5)' : 'brightness(1)'}" (click)="send()">Guardar</button>
+                <button *ngIf="rutaAdd" class="form__button" [disabled]="fg.invalid" [ngStyle]="{'filter': fg.invalid ? 'brightness(.5)' : 'brightness(1)'}" (click)="send()">Guardar</button>
+                <button *ngIf="!rutaAdd" class="form__button" [disabled]="fg.invalid" [ngStyle]="{'filter': fg.invalid ? 'brightness(.5)' : 'brightness(1)'}" (click)="edit()">Editar</button>
             </div>
         </form>
     </div>
@@ -38,13 +39,13 @@
         <h2>Previsualización</h2>
         <div class="producto__container">
             <div class="producto__principal">
-                <img *ngIf="producto.imagen" class="producto__imagen" src="{{producto.imagen}}" alt="">
-                <img *ngIf="!producto.imagen" class="producto__imagen" src="assets/img/img1.jpg" alt="">
-                <h4>{{producto.name}}</h4>
+                <img *ngIf="productoNew.img" class="producto__imagen" src="{{productoNew.img}}" alt="">
+                <img *ngIf="!productoNew.img" class="producto__imagen" src="assets/img/img1.jpg" alt="">
+                <h4>{{productoNew.nombre}}</h4>
             </div>
             <div class="producto__description">
-                <p>{{producto.description}}</p>
-                <span>{{producto.price | currency}}</span>
+                <p>{{productoNew.descripcion}}</p>
+                <span>{{productoNew.precio | currency}}</span>
             </div>
         </div>
     </div>

@@ -6,7 +6,7 @@
             <img src="{{item.imagen}}" alt="{{item.name}}" width="50px" height="70px">
             <div class="lista-productos__botones">
                 <button class="lista-productos__boton lista-productos__boton--edit" (click)="edit(item)" title="Editar"><i class="icofont-edit-alt"></i></button>
-                <button class="lista-productos__boton lista-productos__boton--delete" title="Eliminar"><i class="icofont-ui-delete"></i></button>
+                <button class="lista-productos__boton lista-productos__boton--delete" (click)="delete(item)" title="Eliminar"><i class="icofont-ui-delete"></i></button>
             </div>
         </div>
     </div>
@@ -14,6 +14,6 @@
 <div *ngIf="editar" class="edit">
     <div class="edit__container">
         <button class="edit__cerrar edit__cerrar--posicion" (click)="editar = false"><i class="icofont-close"></i></button>
-        <app-form-producto [title]="'Editar producto'" [producto]="item"></app-form-producto>
+        <app-form-producto (actualizar)="cargarData()" [title]="'Editar producto'" [producto]="item" ></app-form-producto>
     </div>
 </div>

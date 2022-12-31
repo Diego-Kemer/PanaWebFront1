@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { Producto } from 'src/app/modelo/producto';
 import { ApiServicesService } from 'src/app/services/api-services.service';
 
@@ -15,15 +15,26 @@ export class EditProductoComponent implements OnInit{
   constructor(private apiServ: ApiServicesService){}
 
   ngOnInit(): void {
+    this.cargarData()
+  }
+  cargarData(){
     this.apiServ.traerProductos(1).subscribe((res: any)=>{
       this.productos = res.data.docs
-      console.log(res)
     })
   }
 
   edit(item: Producto){
     this.item = item;
     this.editar = true;
+  }
+
+  delete(item: Producto){
+    if(confirm(`Desea eliminar el producto ${item.name}?`)){
+      this.apiServ.eliminarProducto(item._id).subscribe(res=>{
+        this.cargarData()
+      })
+    }
+    
   }
 
 }
