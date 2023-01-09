@@ -1,20 +1,21 @@
 import { Component, EventEmitter, Input, OnInit, Output, ChangeDetectionStrategy } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { timer } from 'rxjs';
 import { Producto } from 'src/app/modelo/producto';
 import { ApiServicesService } from 'src/app/services/api-services.service';
 
 @Component({
   selector: 'app-form-producto',
   templateUrl: './form-producto.component.html',
-  styleUrls: ['./form-producto.component.css'],
-  changeDetection: ChangeDetectionStrategy.OnPush
+  styleUrls: ['./form-producto.component.css']
 })
 export class FormProductoComponent implements OnInit{
   public fg!: FormGroup;
   public image!: any;
   public productoNew!: any;
   public rutaAdd!: boolean;
+  public mensaje!: string;
   @Input() producto!: Producto;
   @Input() title!: string;
   @Output() actualizar = new EventEmitter;
@@ -81,7 +82,10 @@ export class FormProductoComponent implements OnInit{
   send(){
     this.apiServ.sendProduct(this.fg.value, this.image).subscribe(r=>{
       this.fg.reset()
-      this.image = ''
+      this.mensaje = 'ok'
+      timer(2000).subscribe(()=>{this.mensaje = ''})
+      this.image = '';
+      this.productoNew.img = ''
     })  
   }
   edit(){

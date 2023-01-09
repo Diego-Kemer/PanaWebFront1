@@ -1,5 +1,6 @@
 import { AfterViewInit, Component, ElementRef, OnInit, QueryList, Renderer2, ViewChild, ViewChildren } from '@angular/core';
 import {  interval } from 'rxjs';
+import { DataService } from 'src/app/module-home/services/data.service';
 
 @Component({
   selector: 'app-about',
@@ -10,8 +11,12 @@ export class AboutComponent implements OnInit, AfterViewInit {
   @ViewChild('about') about!: ElementRef;
   @ViewChild('texto') texto!: ElementRef;
   @ViewChildren('imagen') imagenes!: QueryList<ElementRef>;
+  public img1!: string;
+  public img2!: string;
+  public img3!: string;
 
-  constructor(private renderer: Renderer2) { }
+  constructor(private renderer: Renderer2,
+              private dataServ: DataService) { }
   
   ngAfterViewInit(): void {
     window.addEventListener('scroll', ()=>{
@@ -30,7 +35,11 @@ export class AboutComponent implements OnInit, AfterViewInit {
   }
 
   ngOnInit(): void {
-    
+    this.dataServ.imagenes.subscribe(res=>{
+      this.img1 = res[0].url;
+      this.img2 = res[1].url;
+      this.img3 = res[2].url;
+    })
     
   }
   

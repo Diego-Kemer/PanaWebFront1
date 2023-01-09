@@ -3,6 +3,19 @@
     align-items: center;
     justify-content: space-around;
     width: 100%;
+    position: relative;
+    height: 80vh;
+}
+.mensaje{
+    position: absolute;
+    top: 0;
+    width: 100%;
+    background: rgba(86, 253, 35, 0.76);
+    text-align: center;
+    padding: .5em 0px;
+    border-radius: 5px;
+    color: #000;
+    transition: all .5s ease-in-out;
 }
 .form{
     padding: 1em;
@@ -26,6 +39,11 @@
     color: #fff;
     border-bottom: 1px solid var(--colorPri);
     padding: .5em;
+}
+.form__campo--sel{
+    color: #000;
+    padding: .2em 0px;
+    border-top: .7px solid var(--colorPri);
 }
 .form__block i{
     color: #fff;
@@ -98,6 +116,13 @@
 }
 .producto__description p{
     margin-bottom: .5em;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 5;
+    line-clamp: 5;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    height: 70%;
 }
 .producto__imagen{
     width: 100%;
@@ -105,12 +130,18 @@
     object-fit: cover;
     z-index: 1;
 }
+.producto__imagen--not{
+    object-fit: fill;
+}
 .producto__principal h4{
     margin-top: -2em;
-    margin-left: .5em;
+    padding: .2em;
+    width: 100%;
+    border-radius: 5px;
+    position: absolute;
     z-index: 2;
     color: #fff;
-    background: rgba(0, 0, 0, 0.986);
+    background: rgba(0, 0, 0, 0.507);
 }
 .producto__container:hover .producto__principal{
     height: 50%;

@@ -1,4 +1,5 @@
 <div class="contenedor">
+    <p *ngIf="mensaje" class="mensaje">¡El producto se ha guardado correctamente! <i class="icofont-check-circled"></i></p>
     <div class="form">
         <h2 class="form__title">{{title}}</h2>
         <form [formGroup]="fg">
@@ -19,8 +20,10 @@
             </div>
             <div class="form__block">
                 <label class="form__label" for="categoria">Categoría:</label>
-                <select class="form__campo form__campo" name="categoria" id="categoria" formControlName="categoria">
-                    <option value="Categoria1">Categoria1</option>
+                <select class="form__campo" name="categoria" id="categoria" formControlName="categoria">
+                    <option class="form__campo--sel" value="pan">Pan</option>
+                    <option class="form__campo--sel" value="bolleria">Bollería</option>
+                    <option class="form__campo--sel" value="pasteles">Pasteles</option>
                 </select>
                 <span class="form__error" *ngIf="fg.get('categoria')?.touched && fg.get('categoria')?.errors">Debe seleccionar una categoría</span>
             </div>
@@ -40,7 +43,7 @@
         <div class="producto__container">
             <div class="producto__principal">
                 <img *ngIf="productoNew.img" class="producto__imagen" src="{{productoNew.img}}" alt="">
-                <img *ngIf="!productoNew.img" class="producto__imagen" src="assets/img/img1.jpg" alt="">
+                <img *ngIf="!productoNew.img" class="producto__imagen producto__imagen" src="assets/img/img.jpg" alt="">
                 <h4>{{productoNew.nombre}}</h4>
             </div>
             <div class="producto__description">

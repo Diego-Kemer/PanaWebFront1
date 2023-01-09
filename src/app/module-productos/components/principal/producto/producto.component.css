@@ -28,9 +28,17 @@
     padding: .5em;
     background: var(--colorTer);
     color: #fff;
+    height: 50%;
 }
 .producto__description p{
     margin-bottom: .5em;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 5;
+    line-clamp: 5;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    height: 70%;
 }
 .producto__imagen{
     width: 100%;
@@ -40,10 +48,13 @@
 }
 .producto__principal h4{
     margin-top: -2em;
-    margin-left: .5em;
+    padding: .2em;
+    width: 100%;
+    border-radius: 5px;
+    position: absolute;
     z-index: 2;
     color: #fff;
-    background: rgba(0, 0, 0, 0.986);
+    background: rgba(0, 0, 0, 0.507);
 }
 .producto:hover .producto__principal{
     height: 50%;

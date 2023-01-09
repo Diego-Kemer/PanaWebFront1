@@ -7,6 +7,8 @@ import { NavAdminComponent } from './components/nav-admin/nav-admin.component';
 import { ModuleSharedModule } from '../module-shared/module-shared.module';
 import { EditProductoComponent } from './components/edit-producto/edit-producto.component';
 import { AddProductoComponent } from './components/add-producto/add-producto.component';
+import { EditHomeComponent } from './components/edit-home/edit-home.component';
+import { FormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -14,12 +16,14 @@ import { AddProductoComponent } from './components/add-producto/add-producto.com
     PrincipalComponent,
     NavAdminComponent,
     EditProductoComponent,
-    AddProductoComponent
+    AddProductoComponent,
+    EditHomeComponent
   ],
   imports: [
     CommonModule,
     ModulePanelRoutingModule,
-    ModuleSharedModule
+    ModuleSharedModule,
+    FormsModule
   ]
 })
 export class ModulePanelModule { }

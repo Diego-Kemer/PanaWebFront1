@@ -9,9 +9,9 @@
 .lista-productos__item{
     width: 100%;
     padding: 1em;
-    display: flex;
+    display: grid;
     align-items: center;
-    justify-content: space-between;
+    grid-template-columns: repeat(4, 1fr);
     border-bottom: .7px solid var(--colorPri);
 }
 .lista-productos__item:hover{
@@ -22,6 +22,8 @@
 }
 .lista-productos__botones{
     padding: 0px .5em;
+    display: flex;
+    justify-content: flex-end;
 }
 .lista-productos__boton{
     padding: .5em;
@@ -37,6 +39,9 @@
 }
 .lista-productos__boton--delete{
     background: rgb(245, 69, 69);
+}
+.lista-productos__price, .lista-productos__img{
+    margin: auto;
 }
 
 .edit{

@@ -3,7 +3,7 @@
         <div class="lista-productos__item" *ngFor="let item of productos">
             <h4 class="lista-productos__nombre">{{item.name}}</h4>
             <span class="lista-productos__price">{{item.price | currency}}</span>
-            <img src="{{item.imagen}}" alt="{{item.name}}" width="50px" height="70px">
+            <img class="lista-productos__img" src="{{item.imagen}}" alt="{{item.name}}" width="50px" height="70px">
             <div class="lista-productos__botones">
                 <button class="lista-productos__boton lista-productos__boton--edit" (click)="edit(item)" title="Editar"><i class="icofont-edit-alt"></i></button>
                 <button class="lista-productos__boton lista-productos__boton--delete" (click)="delete(item)" title="Eliminar"><i class="icofont-ui-delete"></i></button>

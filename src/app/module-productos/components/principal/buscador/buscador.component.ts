@@ -8,11 +8,12 @@ import { Component, ElementRef, EventEmitter, Output, ViewChild } from '@angular
 export class BuscadorComponent {
   @ViewChild('select') select!: ElementRef
   @Output() productosPorCate = new EventEmitter;
-  public categoria!: any;
+  public categoria: string = '';
 
 
   pedir(){
-    const cate = this.select.nativeElement.value;
-    this.productosPorCate.next(cate)
+    this.categoria = this.select.nativeElement.value;
+    if(!this.categoria){return}
+    this.productosPorCate.next(this.categoria)
   }
 }

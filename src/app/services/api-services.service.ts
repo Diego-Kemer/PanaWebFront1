@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { EventEmitter, Injectable, Output } from '@angular/core';
 import { ref, Storage, uploadBytes } from '@angular/fire/storage';
 import { getDownloadURL } from '@firebase/storage';
-import { map, mergeMap, Observable } from 'rxjs';
+import { map, mergeMap, Observable, switchMap, take } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { Producto } from '../modelo/producto';
 import { UiServiceService } from './ui-service.service';
@@ -20,6 +20,20 @@ export class ApiServicesService {
                 private http: HttpClient,
                 private uiServ: UiServiceService) { }
 
+
+  
+  traerImagenes(): Observable<any>{
+    return this.http.get(`${this.appUrl}api/home-imagen/`)
+  }
+
+  sendImagen(f: any): Observable<any>{
+    this.uploadImage(f);
+    let file: any;
+    return this.image.pipe(
+      map(res=> file = {url: res} ),
+      switchMap(()=>this.http.post<any>(`${this.appUrl}api/home-imagen/`, file))
+    ).pipe(take(1))
+  }
   
   traerProductos(page: number): Observable<Array<any>>{
     return this.http.get<Array<any>>(`${this.appUrl}api/producto/${page}`)
@@ -34,7 +48,7 @@ export class ApiServicesService {
     return this.image.pipe(
       map((res: any)=>prod.imagen = res),
       mergeMap(()=> this.http.post<any>(`${this.appUrl}api/producto/`, prod))
-    )  
+    ).pipe(take(1))
   }
 
   private uploadImage(image: any){
@@ -55,7 +69,7 @@ export class ApiServicesService {
       return this.image.pipe(
         map(res => producto.imagen = res),
         mergeMap(()=> this.http.patch<any>(`${this.appUrl}api/producto/${id}`, producto))
-      )
+      ).pipe(take(1))
     } else {
       return this.http.patch<any>(`${this.appUrl}api/producto/${id}`, producto)
     }

@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { ApiServicesService } from 'src/app/services/api-services.service';
+import { DataService } from '../../services/data.service';
 
 @Component({
   selector: 'app-principal',
@@ -7,9 +9,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PrincipalComponent implements OnInit {
 
-  constructor() { }
+  constructor(private apiServ: ApiServicesService,
+              private dataServ: DataService) { }
 
   ngOnInit(): void {
+    this.apiServ.traerImagenes().subscribe(res=>{
+      this.dataServ.imagenes.next(res.data)
+    })
   }
 
 }

@@ -1,5 +1,6 @@
 import { Component, ElementRef, OnInit, Renderer2, ViewChild } from '@angular/core';
 import { interval, timer } from 'rxjs';
+import { DataService } from 'src/app/module-home/services/data.service';
 
 @Component({
   selector: 'app-header',
@@ -9,16 +10,23 @@ import { interval, timer } from 'rxjs';
 export class HeaderComponent implements OnInit {
   @ViewChild('quedarse') quedarse!: ElementRef;
   @ViewChild('irse') irse!: ElementRef;
-  public imagen: string = 'assets/img/img1.jpg';
-  public imagenAnimada: string = 'assets/img/img1.jpg'
-  public imagenes: Array<string> = ['assets/img/img1.jpg', 'assets/img/img2.jpg', 'assets/img/img3.jpg', 'assets/img/img4.jpg'];
+  public imagen!: string;
+  private imagen1!: any
+  public imagenAnimada: string = ''
+  public imagenes: Array<any> = [];
   public numero: number = 0;
 
-  constructor(private renderer: Renderer2) { }
+  constructor(private renderer: Renderer2,
+              private dataServ: DataService) { }
 
   ngOnInit(): void {
+    this.dataServ.imagenes.subscribe(res=>{
+      this.imagenes = res;
+      this.imagen = res[0].url
+      this.imagen1 = res[0]
+    })
     interval(7000).subscribe(()=>{
-      let indice = this.imagenes.indexOf(this.imagen)
+      let indice = this.imagenes.indexOf(this.imagen1)
       if(indice + 1 >= this.imagenes.length) {
         this.logic(3, 0, 'carousel__item--quedarse', 'carousel__item--irse')
         return
@@ -28,7 +36,7 @@ export class HeaderComponent implements OnInit {
   }
 
   nex(){
-    const indice = this.imagenes.indexOf(this.imagen)
+    const indice = this.imagenes.indexOf(this.imagen1)
     if(this.quedarse.nativeElement.classList[1] === 'carousel__item--quedarse'){return}
     if(indice + 1 >= this.imagenes.length) {
       return
@@ -37,7 +45,7 @@ export class HeaderComponent implements OnInit {
   }
 
   back(){
-    const indice = this.imagenes.indexOf(this.imagen)
+    const indice = this.imagenes.indexOf(this.imagen1)
     if(this.quedarse.nativeElement.classList[1] === 'carousel__item--quedarse1'){return}
     if(indice - 1 < 0) {return};
     this.logic(indice, indice - 1, 'carousel__item--quedarse1', 'carousel__item--irse1')
@@ -46,8 +54,9 @@ export class HeaderComponent implements OnInit {
   logic(index: number, calculo: any, clase1: string, clase2: string){
     const anterior = index;
     const nueva = calculo;
-    this.imagenAnimada = this.imagenes[anterior]
-    this.imagen = this.imagenes[nueva]
+    this.imagenAnimada = this.imagenes[anterior]?.url
+    this.imagen = this.imagenes[nueva]?.url
+    this.imagen1 = this.imagenes[nueva]
     const element = this.quedarse.nativeElement;
     const element1 = this.irse.nativeElement;
     this.renderer.addClass(element, clase1)
