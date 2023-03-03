@@ -9,12 +9,15 @@ import { ApiServicesService } from 'src/app/services/api-services.service';
 })
 export class EditHomeComponent {
   public editImg: boolean = false;
-  private url!: any;
+  public url!: any;
   public formUrl = new FormControl({url: this.url})
 
   constructor(private apiServ: ApiServicesService){}
   formImg(){
     this.editImg = true;
+  }
+  formImgOff(){
+    this.editImg = false;
   }
   sendImg(){
     this.apiServ.sendImagen(this.url).subscribe(res=>{

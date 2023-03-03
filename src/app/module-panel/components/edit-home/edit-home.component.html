@@ -1,61 +1,64 @@
 <div class="home">
     <div class="home__container">
-        <h2 class="home__titulo">
             <form action="" class="home__form">
                 <div class="home__form-block">
-                    <h3>Cambiar logo</h3>
-                    <label for="logo"></label>
-                    <input type="file" id="logo">
+                    <h2>Cambiar logo</h2>
+                    <div class="home__form-logo">
+                        <input hidden type="file" id="logo">  
+                        <img src="assets/img/img.jpg" alt="">
+                        <label for="logo">Seleccionar logo</label>
+                    </div>
                 </div>
                 <div class="home__form-block">
-                    <h3>Cambiar imágenes del slider</h3>
+                    <h2>Cambiar imágenes del slider</h2>
                     <div class="home__from-imagenes">
                         <div class="home__from-imagen">
-                            <button (click)="formImg()">edit</button>
-                            <img src="assets/img/img1.jpg" alt="">
+                            <img src="assets/img/img.jpg" alt="">
+                            <button (click)="formImg()">editar imagen</button>
+                        </div>
+                        <div class="home__from-imagen">
+                            <img src="assets/img/img.jpg" alt="">
+                            <button (click)="formImg()">editar imagen</button>
+                        </div>
+                        <div class="home__from-imagen">
+                            <img src="assets/img/img.jpg" alt="">
+                            <button (click)="formImg()">editar imagen</button>
+                        </div>
+                        <div class="home__from-imagen">
+                            <img src="assets/img/img.jpg" alt="">
+                            <button (click)="formImg()">editar imagen</button>
                         </div>
                         <div *ngIf="editImg" class="agregar-imagen">
+                            <button class="agregar-imagen__cerrar" (click)="formImgOff()">x</button>
                             <div class="agregar-imagen__container">
                                 <form #formUrl="ngForm">
-                                    <label for="addImg">Seleccionar: </label>
-                                    <input (change)="foto($event)" name="url" ngModel type="file" id="addImg">
+                                    <label for="addImg">Seleccionar: <img src="assets/img/img.jpg" alt=""></label>
+                                    <input hidden (change)="foto($event)" name="url" ngModel type="file" id="addImg">
                                     <div class="send">
-                                        <button (click)="sendImg()">Editar</button>
+                                        <button [disabled]="!url" class="agregar-imagen__send" (click)="sendImg()">Guardar</button>
                                     </div>
                                 </form>
                             </div>
                         </div>
-                        <div class="home__from-imagen">
-                            <button>edit</button>
-                            <img src="assets/img/img2.jpg" alt="">
-                        </div>
-                        <div class="home__from-imagen">
-                            <button>edit</button>
-                            <img src="assets/img/img3.jpg" alt="">
-                        </div>
-                        <div class="home__from-imagen">
-                            <button>edit</button>
-                            <img src="assets/img/img4.jpg" alt="">
-                        </div>
                     </div>
                 </div>
                 <div class="home__texto">
-                    <h3>Cambiar texto del landing</h3>
+                    <h2>Cambiar texto del landing</h2>
                     <textarea name="" id="" cols="100" rows="30"></textarea>
                 </div>
                 <div class="home__texto">
-                    <h3>Cambiar texto "Sobre nosotros"</h3>
+                    <h2>Cambiar texto "Sobre nosotros"</h2>
                     <textarea name="" id="" cols="100" rows="30"></textarea>
                 </div>
                 <div class="home__promociones">
-                    <h3>Editar las promociones</h3>
+                    <h2>Editar las promociones</h2>
                     <div class="promociones__container">
                         <article class="promociones__item">
                             <picture class="promociones__picture">
                                 <img #animado class="promociones__imagen" src="assets/img/pan de ajo.jpg" alt="">
                             </picture>
                             <div #animado class="promociones__description">
-                                <h3>Pan de ajo</h3>
+                                <h2>Pan de ajo</h2>
                                 <p>Obtén un 25% de descuento en tu compra de pan de ajo y lleva 8 unidades x $400 *Por
                                     tiempo limitado.</p>
                                 <span>$600</span>
@@ -66,7 +69,7 @@
                                 <img #animado class="promociones__imagen" src="assets/img/pan navideño.jpg" alt="">
                             </picture>
                             <div #animado class="promociones__description">
-                                <h3>Pan dulce + pan de manteca (12 u)</h3>
+                                <h2>Pan dulce + pan de manteca (12 u)</h2>
                                 <p>Perfecto para la hora del café, disfruta de un delicioso Pan navideño dulce +
                                     nuestros deliciosas panes de manteca.</p>
                                 <span>$700</span>
@@ -78,7 +81,7 @@
                                     src="assets/img/bolitas de chocolate y coco.jpg" alt="">
                             </picture>
                             <div #animado class="promociones__description">
-                                <h3>Bolitas de chocolate y coco</h3>
+                                <h2>Bolitas de chocolate y coco</h2>
                                 <p>Acompañantes ideales de unos buenos mates. Comprando dos docenas te llevás la segunda
                                     a mitad de precio.</p>
                                 <span>$850</span>
@@ -88,11 +91,11 @@
                    
                 </div>
                  <div class="home__mapa">
-                        <h3>Seleccionar ubicación en el mapa</h3>
+                        <h2>Seleccionar ubicación en el mapa</h2>
                         <iframe src="https://www.google.com/maps/embed?pb=!1m16!1m12!1m3!1d3395.74779910446!2d-59.89322513183414!3d-31.668118981116443!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!2m1!1sLebhenson%2051%2C%20Mar%C3%ADa%20Grande%2C%20Entre%20R%C3%ADos!5e0!3m2!1ses!2sar!4v1671013471793!5m2!1ses!2sar" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
                     </div>
                     <div class="home__redes">
-                        <h3>Editar las redes sociales</h3>
+                        <h2>Editar las redes sociales</h2>
                         <div class="home__redes-soc">
                             <div class="home-red">
                                 <label for="facebook">Facebook</label>
@@ -114,6 +117,5 @@
                     </div>
 
             </form>
-        </h2>
     </div>
 </div>
