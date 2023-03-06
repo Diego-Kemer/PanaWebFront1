@@ -21,7 +21,16 @@ export class ApiServicesService {
                 private uiServ: UiServiceService) { }
 
 
-  
+  traerLogo(): Observable<any>{
+    return this.http.get(`${this.appUrl}api/home-logo/`)
+  }
+  actualizarLogo(id: any, file: any): Observable<any>{
+    this.uploadImage(file);
+    return this.image.pipe(
+      map(res=> file = {url: res} ),
+      switchMap(()=>this.http.patch<any>(`${this.appUrl}api/home-logo/${id}`, file))
+    ).pipe(take(1))
+  }
   traerImagenes(): Observable<any>{
     return this.http.get(`${this.appUrl}api/home-imagen/`)
   }
@@ -34,6 +43,16 @@ export class ApiServicesService {
       switchMap(()=>this.http.post<any>(`${this.appUrl}api/home-imagen/`, file))
     ).pipe(take(1))
   }
+
+  actualizarImagen(f: any, id: any): Observable<any>{
+    this.uploadImage(f);
+    let file: any;
+    return this.image.pipe(
+      map(res=> file = {url: res} ),
+      switchMap(()=>this.http.patch<any>(`${this.appUrl}api/home-imagen/${id}`, file))
+    ).pipe(take(1))
+  }
+  
   
   traerProductos(page: number): Observable<Array<any>>{
     return this.http.get<Array<any>>(`${this.appUrl}api/producto/${page}`)
