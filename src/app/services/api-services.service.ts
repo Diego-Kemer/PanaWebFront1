@@ -31,6 +31,14 @@ export class ApiServicesService {
       switchMap(()=>this.http.patch<any>(`${this.appUrl}api/home-logo/${id}`, file))
     ).pipe(take(1))
   }
+
+  traerTextos(): Observable<any>{
+    return this.http.get(`${this.appUrl}api/home-texto/`)
+  }
+
+  guardarTexto(datos: any, id: any): Observable<any>{
+    return this.http.patch(`${this.appUrl}api/home-texto/${id}`, datos)
+  }
   traerImagenes(): Observable<any>{
     return this.http.get(`${this.appUrl}api/home-imagen/`)
   }
@@ -52,6 +60,26 @@ export class ApiServicesService {
       switchMap(()=>this.http.patch<any>(`${this.appUrl}api/home-imagen/${id}`, file))
     ).pipe(take(1))
   }
+
+  //Promociones
+
+  traerPromos(): Observable<any>{
+    return this.http.get(`${this.appUrl}api/home-promocion/`)
+  }
+  actualizarPromo(datos: any, f: any, id: any): Observable<any>{
+    this.uploadImage(f);
+    let img: any;
+    return this.image.pipe(
+      map(res => img = res),
+      switchMap(()=>this.http.patch<any>(`${this.appUrl}api/home-promocion/${id}`, {
+        titulo: datos.titulo,
+        descripcion: datos.descripcion,
+        img,
+        precio: datos.precio
+      }))
+    ).pipe(take(1))
+  }
+  //------------------------//
   
   
   traerProductos(page: number): Observable<Array<any>>{
@@ -96,5 +124,13 @@ export class ApiServicesService {
 
   eliminarProducto(id: string): Observable<any>{
     return this.http.delete<any>(`${this.appUrl}api/producto/${id}`)
+  }
+
+  traerDatos(): Observable<any>{
+    return this.http.get(`${this.appUrl}api/home-datos/`)
+  }
+
+  actualizarDatos(id: any, datos: any): Observable<any>{
+    return this.http.patch(`${this.appUrl}api/home-datos/${id}`, datos)
   }
 }

@@ -21,7 +21,8 @@
                     </ng-container>
 
                     <div *ngIf="editImg" class="agregar-imagen">
-                        <button class="agregar-imagen__cerrar" (click)="formImgOff()">x</button>
+                        <button class="agregar-imagen__cerrar" (click)="formImgOff()"><i
+                                class="icofont-close-circled"></i></button>
                         <div class="agregar-imagen__container">
                             <form #formUrl="ngForm">
                                 <input hidden name="url" ngModel type="file" (change)="foto($event)" id="addImg">
@@ -36,51 +37,56 @@
                     </div>
                 </div>
             </div>
-            <div class="home__texto">
-                <h2>Cambiar texto del landing</h2>
-                <textarea name="" id="" cols="100" rows="30"></textarea>
-            </div>
-            <div class="home__texto">
-                <h2>Cambiar texto "Sobre nosotros"</h2>
-                <textarea name="" id="" cols="100" rows="30"></textarea>
+            <div class="home__texto" [formGroup]="formText">
+                <div class="home__texto-landing">
+                    <h2>Cambiar texto del landing</h2>
+                    <textarea formControlName="textLanding" name="textLanding" id="" cols="50" rows="15"></textarea>
+                </div>
+                <div class="home__texto-about">
+                    <h2>Cambiar texto "Sobre nosotros"</h2>
+                    <textarea formControlName="textAbout" name="textAbout" id="" cols="50" rows="15"></textarea>
+                </div>
+                <button [disabled]="formText.invalid" (click)="saveTexto()" class="home__texto-save">Guardar
+                    textos</button>
             </div>
             <div class="home__promociones">
                 <h2>Editar las promociones</h2>
                 <div class="promociones__container">
-                    <article class="promociones__item">
-                        <picture class="promociones__picture">
-                            <img #animado class="promociones__imagen" src="assets/img/pan de ajo.jpg" alt="">
-                        </picture>
-                        <div #animado class="promociones__description">
-                            <h2>Pan de ajo</h2>
-                            <p>Obtén un 25% de descuento en tu compra de pan de ajo y lleva 8 unidades x $400 *Por
-                                tiempo limitado.</p>
-                            <span>$600</span>
-                        </div>
-                    </article>
-                    <article class="promociones__item">
+
+                    <article *ngFor="let item of promociones" class="promociones__item">
                         <picture>
-                            <img #animado class="promociones__imagen" src="assets/img/pan navideño.jpg" alt="">
+                            <img #animado class="promociones__imagen" src={{item.img}} alt="">
                         </picture>
                         <div #animado class="promociones__description">
-                            <h2>Pan dulce + pan de manteca (12 u)</h2>
-                            <p>Perfecto para la hora del café, disfruta de un delicioso Pan navideño dulce +
-                                nuestros deliciosas panes de manteca.</p>
-                            <span>$700</span>
+                            <h2>{{item.titulo}}</h2>
+                            <p>{{item.descripcion}}</p>
+                            <span>{{item.precio}}</span>
+
                         </div>
+                        <button class="button" (click)="abrir(item)">Editar</button>
                     </article>
-                    <article class="promociones__item">
-                        <picture>
-                            <img #animado class="promociones__imagen" src="assets/img/bolitas de chocolate y coco.jpg"
-                                alt="">
-                        </picture>
-                        <div #animado class="promociones__description">
-                            <h2>Bolitas de chocolate y coco</h2>
-                            <p>Acompañantes ideales de unos buenos mates. Comprando dos docenas te llevás la segunda
-                                a mitad de precio.</p>
-                            <span>$850</span>
-                        </div>
-                    </article>
+
+                    <div class="promociones__edit" *ngIf="editPromociones">
+                        <article class="promociones__item" [formGroup]="formPromo">
+                            <button class="cerrar" (click)="cerrarPromo()"><i
+                                    class="icofont-close-circled"></i></button>
+                            <picture>
+                                <input type="file" (change)="imgPromo($event)" id="imgProm">
+                                <label for="imgProm">Seleccionar imagen
+                                    <img #animado class="promociones__imagen" src={{imgSel}} alt=""></label>
+                            </picture>
+                            <div #animado class="promociones__description">
+                                <h2><input formControlName="titulo" type="text" placeholder="{{promoSelect?.titulo}}">
+                                </h2>
+                                <p><input formControlName="descripcion" type="text"
+                                        placeholder="{{promoSelect?.descripcion}}"></p>
+                                <span><input formControlName="precio" type="number"
+                                        placeholder="{{promoSelect?.precio}}"> </span>
+                            </div>
+                            <button class="button" [disabled]="formPromo.invalid"
+                                (click)="actualizarPromo()">Guardar</button>
+                        </article>
+                    </div>
                 </div>
 
             </div>
@@ -91,25 +97,44 @@
                     style="border:0;" allowfullscreen="" loading="lazy"
                     referrerpolicy="no-referrer-when-downgrade"></iframe>
             </div>
-            <div class="home__redes">
+            <div class="home__redes" [formGroup]="formDatos">
                 <h2>Editar las redes sociales</h2>
                 <div class="home__redes-soc">
                     <div class="home-red">
-                        <label for="facebook">Facebook</label>
-                        <input type="text" id="facebook">
+                        <label for="dominio">Nombre de la empresa</label>
+                        <input formControlName="nombre" placeholder="{{datos?.nombre}}" type="text" id="dominio">
                     </div>
                     <div class="home-red">
-                        <label for="instagram">Instagram</label>
-                        <input type="text" id="instagram">
+                        <label for="facebook">Facebook:</label>
+                        <input formControlName="face" placeholder="{{datos?.face}}" type="text" id="facebook">
                     </div>
                     <div class="home-red">
-                        <label for="whatsapp">Whatsapp</label>
-                        <input type="number" id="whatsapp">
+                        <label for="instagram">Instagram:</label>
+                        <input formControlName="insta" placeholder="{{datos?.insta}}" type="text" id="instagram">
                     </div>
                     <div class="home-red">
-                        <label for="email">Email</label>
-                        <input type="email" id="email">
+                        <label for="whatsapp">Whatsapp:</label>
+                        <input formControlName="wspp" placeholder="{{datos?.wspp}}" type="number" id="whatsapp">
                     </div>
+                    <div class="home-red">
+                        <label for="email">Email:</label>
+                        <input formControlName="email" placeholder="{{datos?.email}}" type="email" id="email">
+                    </div>
+                    <div class="home-red">
+                        <h4>Colores:</h4>
+                        <div class="colores">
+                            <div class="color">
+                                <label for="color1">Color principal:</label>
+                                <input formControlName="color1" value="{{datos?.color1}}" type="color" id="color1">
+                            </div>
+                            <div class="color">
+                                <label for="color1">Color secundario:</label>
+                                <input formControlName="color2"  value="{{datos?.color2}}" type="color" id="color1">
+                            </div>
+                        </div>
+
+                    </div>
+                    <button (click)="guardarDatos()">Guardar</button>
                 </div>
             </div>
 

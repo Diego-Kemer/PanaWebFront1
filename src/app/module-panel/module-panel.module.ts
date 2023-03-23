@@ -8,7 +8,7 @@ import { ModuleSharedModule } from '../module-shared/module-shared.module';
 import { EditProductoComponent } from './components/edit-producto/edit-producto.component';
 import { AddProductoComponent } from './components/add-producto/add-producto.component';
 import { EditHomeComponent } from './components/edit-home/edit-home.component';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -23,7 +23,8 @@ import { FormsModule } from '@angular/forms';
     CommonModule,
     ModulePanelRoutingModule,
     ModuleSharedModule,
-    FormsModule
+    FormsModule,
+    ReactiveFormsModule
   ]
 })
 export class ModulePanelModule { }
