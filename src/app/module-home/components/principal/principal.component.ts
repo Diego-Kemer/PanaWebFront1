@@ -16,6 +16,10 @@ export class PrincipalComponent implements OnInit {
     this.apiServ.traerImagenes().subscribe(res=>{
       this.dataServ.imagenes.next(res.data)
     })
+
+    this.apiServ.traerTextos().subscribe(res=>{
+      this.dataServ.textos.next(res.data[0])
+    })
   }
 
 }

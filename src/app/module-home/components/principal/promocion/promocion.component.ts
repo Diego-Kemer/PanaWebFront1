@@ -1,4 +1,5 @@
 import { AfterViewInit, Component, ElementRef, OnInit, QueryList, Renderer2, ViewChild, ViewChildren } from '@angular/core';
+import { ApiServicesService } from 'src/app/services/api-services.service';
 
 @Component({
   selector: 'app-promocion',
@@ -7,11 +8,16 @@ import { AfterViewInit, Component, ElementRef, OnInit, QueryList, Renderer2, Vie
 })
 export class PromocionComponent implements OnInit, AfterViewInit{
   @ViewChild('promociones') promociones!: ElementRef;
-  @ViewChildren('animado') animados!: QueryList<ElementRef>
+  @ViewChildren('animado') animados!: QueryList<ElementRef>;
+  public promocions!: Array<any>;
 
-  constructor( private renderer: Renderer2) { }
+  constructor( private renderer: Renderer2,
+                private apiServ: ApiServicesService) { }
 
   ngOnInit(): void {
+    this.apiServ.traerPromos().subscribe(res=>{
+      this.promocions = res.data
+    })
     }
   
   ngAfterViewInit(): void {

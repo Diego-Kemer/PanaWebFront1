@@ -14,6 +14,7 @@ export class AboutComponent implements OnInit, AfterViewInit {
   public img1!: string;
   public img2!: string;
   public img3!: string;
+  public textoAbout!: string;
 
   constructor(private renderer: Renderer2,
               private dataServ: DataService) { }
@@ -40,7 +41,9 @@ export class AboutComponent implements OnInit, AfterViewInit {
       this.img2 = res[1].url;
       this.img3 = res[2].url;
     })
-    
+    this.dataServ.textos.subscribe(res=>{
+      this.textoAbout = res.textAbout;
+    })
   }
   
   

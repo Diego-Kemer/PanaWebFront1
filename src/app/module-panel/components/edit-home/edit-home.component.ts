@@ -51,6 +51,10 @@ export class EditHomeComponent implements OnInit{
     })
     this.apiServ.traerDatos().subscribe(res=>{
       this.datos = res.data[0]
+      const {nombre ,face ,insta ,email , wspp ,color1 ,color2} = this.datos
+      this.formDatos.patchValue({
+        nombre ,face ,insta ,email , wspp ,color1 ,color2
+      })
     })
     //-----------------------------------
     this.formPromo = this.fb.group({

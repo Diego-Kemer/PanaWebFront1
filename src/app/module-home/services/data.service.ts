@@ -5,5 +5,7 @@ import { EventEmitter, Injectable, Output } from '@angular/core';
 })
 export class DataService {
   @Output() imagenes = new EventEmitter()
+  @Output() textos = new EventEmitter()
+  
   constructor() { }
 }

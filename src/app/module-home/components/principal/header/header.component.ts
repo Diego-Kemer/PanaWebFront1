@@ -1,6 +1,7 @@
 import { Component, ElementRef, OnInit, Renderer2, ViewChild } from '@angular/core';
 import { interval, timer } from 'rxjs';
 import { DataService } from 'src/app/module-home/services/data.service';
+import { ApiServicesService } from 'src/app/services/api-services.service';
 
 @Component({
   selector: 'app-header',
@@ -15,11 +16,20 @@ export class HeaderComponent implements OnInit {
   public imagenAnimada: string = ''
   public imagenes: Array<any> = [];
   public numero: number = 0;
+  public titulo!: string;
+  public texto!: string;
 
   constructor(private renderer: Renderer2,
-              private dataServ: DataService) { }
+              private dataServ: DataService,
+              private apiServ: ApiServicesService) { }
 
   ngOnInit(): void {
+    this.apiServ.traerDatos().subscribe(res=>{
+      this.titulo = res.data[0].nombre
+    })
+    this.dataServ.textos.subscribe(res=>{
+      this.texto = res.textLanding;
+    })
     this.dataServ.imagenes.subscribe(res=>{
       this.imagenes = res;
       this.imagen = res[0].url
