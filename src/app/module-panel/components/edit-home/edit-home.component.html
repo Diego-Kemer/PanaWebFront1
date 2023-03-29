@@ -7,7 +7,7 @@
                     <input hidden type="file" (change)="cambiarLogo($event)" id="logo">
                     <img src="{{logo}}" alt="">
                     <label for="logo">Seleccionar logo</label>
-                    <button (click)="saveLogo()">Guardar logo</button>
+                    <button class="logo__button" (click)="saveLogo()">Guardar logo</button>
                 </div>
             </div>
             <div class="home__form-block">
@@ -40,11 +40,11 @@
             <div class="home__texto" [formGroup]="formText">
                 <div class="home__texto-landing">
                     <h2>Cambiar texto del landing</h2>
-                    <textarea formControlName="textLanding" name="textLanding" id="" cols="50" rows="15"></textarea>
+                    <textarea formControlName="textLanding" name="textLanding" rows="15"></textarea>
                 </div>
                 <div class="home__texto-about">
                     <h2>Cambiar texto "Sobre nosotros"</h2>
-                    <textarea formControlName="textAbout" name="textAbout" id="" cols="50" rows="15"></textarea>
+                    <textarea formControlName="textAbout" name="textAbout" rows="15"></textarea>
                 </div>
                 <button [disabled]="formText.invalid" (click)="saveTexto()" class="home__texto-save">Guardar
                     textos</button>
@@ -58,9 +58,9 @@
                             <img #animado class="promociones__imagen" src={{item.img}} alt="">
                         </picture>
                         <div #animado class="promociones__description">
-                            <h2>{{item.titulo}}</h2>
+                            <h3>{{item.titulo}}</h3>
                             <p>{{item.descripcion}}</p>
-                            <span>{{item.precio}}</span>
+                            <span>{{item.precio | currency}}</span>
 
                         </div>
                         <button class="button" (click)="abrir(item)">Editar</button>
@@ -120,7 +120,7 @@
                         <label for="email">Email:</label>
                         <input formControlName="email" placeholder="{{datos?.email}}" type="email" id="email">
                     </div>
-                    <div class="home-red">
+                    <div class="home-red home-red-col">
                         <h4>Colores:</h4>
                         <div class="colores">
                             <div class="color">
@@ -128,13 +128,17 @@
                                 <input formControlName="color1" value="{{datos?.color1}}" type="color" id="color1">
                             </div>
                             <div class="color">
-                                <label for="color1">Color secundario:</label>
-                                <input formControlName="color2"  value="{{datos?.color2}}" type="color" id="color1">
+                                <label for="color2">Color secundario:</label>
+                                <input formControlName="color2"  value="{{datos?.color2}}" type="color" id="color2">
+                            </div>
+                            <div class="color">
+                                <label for="color3">Color terciario:</label>
+                                <input formControlName="color3"  value="{{datos?.color3}}" type="color" id="color3">
                             </div>
                         </div>
 
                     </div>
-                    <button (click)="guardarDatos()">Guardar</button>
+                    <button class="home__redes-bot" (click)="guardarDatos()">Guardar</button>
                 </div>
             </div>
 

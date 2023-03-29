@@ -19,6 +19,7 @@ export class AppComponent implements OnInit{
     this.apiServ.traerDatos().subscribe(res=>{
       this.datos = res.data[0]
       this.title = this.datos.nombre
+      this.uiServ.datos.next(this.datos)
     })
   }
 }

@@ -1,4 +1,4 @@
-import { Injectable} from '@angular/core';
+import { EventEmitter, Injectable, Output} from '@angular/core';
 import { Subject } from 'rxjs';
 
 @Injectable({
@@ -6,6 +6,7 @@ import { Subject } from 'rxjs';
 })
 export class UiServiceService {
   loading$ = new Subject<boolean>();
+  @Output() datos: EventEmitter<any> = new EventEmitter();
 
   constructor() { }
 

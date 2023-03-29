@@ -7,7 +7,7 @@
 }
 :root{
     font-family: 'Raleway', sans-serif;
-    /* --colorPri: #f6803e; */
+    --colorPri: #f6803e; 
     --colorPriRGB: 246, 128, 62;
     --colorSec: #a63b0f;
     --colorTer: #2c2320;

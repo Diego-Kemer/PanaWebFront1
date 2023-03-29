@@ -14,7 +14,6 @@ import { UiServiceService } from './ui-service.service';
 export class ApiServicesService {
   private filePath: any;
   @Output() image = new EventEmitter;
-  @Output() titulo = new EventEmitter();
   private appUrl: string = environment.apiUrl;
 
   constructor( private storage: Storage,

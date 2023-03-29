@@ -1,4 +1,4 @@
-<div  [ngStyle]="{'--colorPri': datos?.color1, '--colorSec': datos?.color2}">
+<div  [ngStyle]="{'--colorPri': datos?.color1, '--colorSec': datos?.color2, '--colorTer': datos?.color3}">
     <router-outlet ></router-outlet>
     <app-loading *ngIf="loading$ | async"></app-loading>
 </div>

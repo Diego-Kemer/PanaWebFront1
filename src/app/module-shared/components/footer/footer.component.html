@@ -3,14 +3,14 @@
         <div class="footer__redes-logo">
             <div class="footer__logo">
                 <picture class="logo">
-                    <img class="logo__imagen" src="assets/img/logo-panaderia.png" alt="Panadería web">
+                    <img class="logo__imagen" src="{{logo}}" alt="Panadería web">
                 </picture>
             </div>
             <div class="footer__redes">
-                <a href="" title="Instagram"><i class="icofont-instagram"></i> </a>
-                <a href="" title="Facebook"><i class="icofont-facebook"></i> </a>
-                <a href="" title="Email"><i class="icofont-email"></i> </a>
-                <a href="" title="Whatsapp"><i class="icofont-whatsapp"></i> </a>
+                <a target="_blank" href="{{datos?.insta}}" title="Instagram"><i class="icofont-instagram"></i> </a>
+                <a target="_blank" href="{{datos?.face}}" title="Facebook"><i class="icofont-facebook"></i> </a>
+                <a target="_blank" href="mailto:{{datos?.email}}?subject=Quisiera contratar sus servicios." title="Email"><i class="icofont-email"></i> </a>
+                <a target="_blank" href="https://wa.me/54{{datos?.wspp}}/?text=Quisiera%20contratar%20sus%20servicios." title="Whatsapp"><i class="icofont-whatsapp"></i> </a>
             </div>
             
         </div>

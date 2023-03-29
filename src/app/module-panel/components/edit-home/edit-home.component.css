@@ -19,6 +19,14 @@
     justify-content: center;
     margin: auto;
 }
+.home__form-logo label{
+    font-size: .7em;
+    border: solid .7px #000;
+    border-radius: 3px;
+    padding: .2em;
+    cursor: pointer;
+    width: max-content;
+}
 .home__form-logo img{
     width: 100%;
 }
@@ -96,8 +104,9 @@
     padding: 10px;
     margin-top: .5em;
     font-size: 1em;
+    width: 100%;
 }
-.home__from-imagen button, .home__form-logo label, .agregar-imagen__send{
+.home__from-imagen button, .logo__button, .agregar-imagen__send{
     padding: 5px;
     background: #000;
     color: #fff;
@@ -107,6 +116,10 @@
     text-transform: uppercase;
     width: 100%;
     cursor: pointer;
+}
+.logo__button{
+    width: max-content;
+    margin-top: 1em;
 }
 .home__from-imagenes img{
     width: 100%;
@@ -213,7 +226,7 @@
 }
 .home__redes-soc{
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 50% 50%;
     padding: 1em;
 }
 .home-red{
@@ -225,8 +238,51 @@
     border-bottom: 1px solid var(--colorSec);
     margin-left: 5px;
 }
+.home-red-col, .home__redes-bot{
+    grid-column: 1/3;
+}
+.home__redes-bot{
+    color: #fff;
+    background: #000;
+    width: 30%;
+    margin: auto;
+    cursor: pointer;
+    border: none;
+    outline: none;
+    padding: .5em 0px;
+    margin-top: 2em;
+    transition: all .5s ease-in-out;
+    border-radius: 4px;
+}
+.home__redes-bot:hover{
+    color: #000;
+    background: #fff;
+    border: solid 1px #000;
+}
+.colores{
+    display: flex;
+    justify-content: space-between;
+}
 
+@media screen and (max-width: 800px) {
+    .home__texto{
+        flex-direction: column;
+    }
+    .promociones__item{
+        width: 32%;
+    }
+    .promociones__imagen{
+        height: 45%;
+    }
+    .promociones__description{
+        padding: 1em .5em;
+        height: 55%;
+    }
+}
 @media screen and (max-width: 600px) {
+    .home{
+        font-size: 16px;
+    }
     .promociones__container{
         scroll-snap-type: x mandatory;
         overflow-x: scroll;

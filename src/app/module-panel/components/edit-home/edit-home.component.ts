@@ -51,9 +51,9 @@ export class EditHomeComponent implements OnInit{
     })
     this.apiServ.traerDatos().subscribe(res=>{
       this.datos = res.data[0]
-      const {nombre ,face ,insta ,email , wspp ,color1 ,color2} = this.datos
+      const {nombre ,face ,insta ,email , wspp ,color1 ,color2, color3} = this.datos
       this.formDatos.patchValue({
-        nombre ,face ,insta ,email , wspp ,color1 ,color2
+        nombre ,face ,insta ,email , wspp ,color1 ,color2, color3
       })
     })
     //-----------------------------------
@@ -73,7 +73,8 @@ export class EditHomeComponent implements OnInit{
       email: ['', [Validators.email, Validators.required]],
       wspp: Number,
       color1: ['', Validators.required],
-      color2: ['', Validators.required]
+      color2: ['', Validators.required],
+      color3: ['', Validators.required]
     })
   }
   onPatchValue(): void{
@@ -167,6 +168,7 @@ export class EditHomeComponent implements OnInit{
       console.log(res)
       this.apiServ.traerPromos()
       this.editPromociones = false
+      this.formPromo.reset()
     })
   }
 
