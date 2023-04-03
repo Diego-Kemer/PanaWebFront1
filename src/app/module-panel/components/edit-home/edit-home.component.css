@@ -220,6 +220,45 @@
     font-weight: bold;
 }
 
+.home__videoPresent{
+    display: flex;
+    width: 100%;
+    margin: 1em 0px;
+}
+.home__videoPresent-video, .home__videoPresent-Present{
+    display: flex;
+    width: 40%;
+    margin: auto;
+    flex-direction: column;
+}
+.home__videoPresent-video video{
+    margin-top: 1em;
+}
+.home__videoPresent-Present label{
+    font-weight: bold;
+    margin-bottom: .5em;
+    margin-top: 1em;
+}
+.home__work{
+    display: flex;
+    flex-direction: column;
+}
+.home__videoPresent-video label, .home__work button{
+    background: #333131;
+    color: #fff;
+    cursor: pointer;
+    margin: auto;
+    border: none;
+    outline: none;
+    border-radius: 3px;
+    padding: 10px;
+    margin-top: .5em;
+}
+.home__work button{
+    text-transform: uppercase;
+    background: #000;
+}
+
 .home__redes, .home__mapa{
     width: 100%;
     margin: 1em 0px;

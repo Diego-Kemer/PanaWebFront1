@@ -13,7 +13,6 @@ export class LogoComponent implements OnInit{
   ngOnInit(): void {
     this.apiServ.traerLogo().subscribe(res=>{
       this.logo = res.data[0].url
-      console.log(this.logo)
     })
   }
 }

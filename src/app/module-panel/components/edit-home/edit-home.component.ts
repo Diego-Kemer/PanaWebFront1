@@ -11,6 +11,7 @@ export class EditHomeComponent implements OnInit{
   public formText!: FormGroup;
   public formPromo!: FormGroup;
   public formDatos!: FormGroup;
+  public formPresVid!: FormGroup;
   public editImg: boolean = false;
   public imagenes: Array<any> = []
   public promociones: Array<any> = [];
@@ -26,6 +27,9 @@ export class EditHomeComponent implements OnInit{
   public promoSelect: any;
   public imgSel: any;
   public datos: any;
+  public video: any;
+  public pres:any = ``;
+  public presentacion: any;
 
   
 
@@ -56,6 +60,11 @@ export class EditHomeComponent implements OnInit{
         nombre ,face ,insta ,email , wspp ,color1 ,color2, color3
       })
     })
+    this.apiServ.traerPresentacion().subscribe(res=>{
+      this.presentacion = res.data[0]
+      this.video = this.presentacion.url
+      this.presPatchValue()
+    })
     //-----------------------------------
     this.formPromo = this.fb.group({
       titulo: ['', [Validators.minLength(10), Validators.required]],
@@ -76,11 +85,22 @@ export class EditHomeComponent implements OnInit{
       color2: ['', Validators.required],
       color3: ['', Validators.required]
     })
+    this.formPresVid = this.fb.group({
+      titulo: ['', Validators.required],
+      descripcion: ['', Validators.required],
+      url: ''
+    })
   }
   onPatchValue(): void{
     this.formText.patchValue({
       textLanding: this.texto.textLanding,
       textAbout: this.texto.textAbout
+    })
+  }
+  presPatchValue(): void{
+    this.formPresVid.patchValue({
+      titulo: this.presentacion.titulo,
+      descripcion: this.presentacion.descripcion
     })
   }
   formImg(iten: any){
@@ -123,6 +143,9 @@ export class EditHomeComponent implements OnInit{
       }
       if(revisar == 'promo'){
         this.imgSel = filereader.result
+      }
+      if(revisar == 'video'){
+        this.video = filereader.result
       }
     }
     filereader.onerror = (error)=>{
@@ -179,4 +202,20 @@ export class EditHomeComponent implements OnInit{
     })
   }
 
+  verVideo(e: any){
+    const tam = e.target.files[0].size / 1048576
+    if(tam > 15){
+      alert('El video no debe pesar más de 15mb')
+    }else{
+      this.handleImage(e, 'video')
+    }
+  }
+
+  guardarPres(){
+    this.apiServ.actualizarPresentacion(this.presentacion._id, this.formPresVid.value, this.image).subscribe(res=>{
+      console.log(res)
+    })
+    
+  }
+  
 }

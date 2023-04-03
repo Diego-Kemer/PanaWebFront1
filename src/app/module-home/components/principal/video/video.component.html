@@ -1,13 +1,11 @@
 <section class="work">
     <div class="work__container">
-        <div class="worw__video">
-            <video controls autoplay loop src="assets/video/Pasta.mp4" width="100%"></video>
+        <div class="work__video">
+            <video controls autoplay loop src="{{presentacion?.url}}" width="100%"></video>
         </div>
         <div class="work__description">
-            <h3>Comprometidos con la calidad</h3>
-            <p>Contamos con la última tecnología para garantizar la entrega en las condiciones más estrictas de calidad. Seguimos todos los procedimientos necesarios para comercializar artículos sabrosos, saludables y variados. Somos conscientes de la necesidad de llevar a cabo un trabajo con un alto nivel de exigencia, dado que formamos parte de la cadena de suministro entre el proveedor y el cliente final.</p>
-            <p>No solo le ofrecemos productos congelados para pastelerías, panaderías y hostelería, sino que también nos caracteriza un trabajo riguroso y una gran dedicación.</p>
-            <p>Marque la diferencia en su negocio o simplemente dese un capricho y disfrute de bollería y pan de calidad. Ponemos a su disposición las mejores manos para darle a Su paladar el sabor que se merece. Contacte con nosotros para obtener más información.</p>
+            <h3>{{presentacion?.titulo}}</h3>
+            <p> {{presentacion?.descripcion}}</p>
         </div>
     </div>
 </section>

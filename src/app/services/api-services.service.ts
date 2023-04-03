@@ -133,4 +133,20 @@ export class ApiServicesService {
   actualizarDatos(id: any, datos: any): Observable<any>{
     return this.http.patch(`${this.appUrl}api/home-datos/${id}`, datos)
   }
+
+  traerPresentacion(): Observable<any>{
+    return this.http.get(`${this.appUrl}api/home-pres`)
+  }
+
+  actualizarPresentacion(id: any, datos:any, f: any): Observable<any>{
+    if (f) {
+      this.uploadImage(f);
+      return this.image.pipe(
+        map(res => datos.url = res),
+        mergeMap(()=> this.http.patch<any>(`${this.appUrl}api/home-pres/${id}`, datos))
+      ).pipe(take(1))
+    } else {
+      return this.http.patch<any>(`${this.appUrl}api/home-pres/${id}`, datos)
+    }
+  }
 }

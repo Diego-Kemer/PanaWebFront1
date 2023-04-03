@@ -90,6 +90,22 @@
                 </div>
 
             </div>
+            <div class="home__work">
+                <div class="home__videoPresent" [formGroup]="formPresVid">
+                    <div class="home__videoPresent-video">
+                        <video src="{{video}}" controls></video>
+                        <input type="file" id="video" hidden accept=".mp4" (change)="verVideo($event)">
+                        <label for="video">Seleccionar video</label>
+                    </div>
+                    <div class="home__videoPresent-Present">
+                        <label for="tit">Título:</label>
+                        <input formControlName="titulo" type="text" id="tit">
+                        <label for="pres">Texto:</label>
+                        <textarea formControlName="descripcion" name="pres" id="pres" cols="30" rows="10"></textarea>
+                    </div>
+                </div>
+                <button (click)="guardarPres()">Actualizar texto y video</button>
+            </div>
             <div class="home__mapa">
                 <h2>Seleccionar ubicación en el mapa</h2>
                 <iframe
